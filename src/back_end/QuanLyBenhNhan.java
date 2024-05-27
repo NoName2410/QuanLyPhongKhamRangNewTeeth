@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class QuanLyBenhNhan {
 
-    private ArrayList<BenhNhan> ds;
+    public static ArrayList<BenhNhan> ds;
     private int currentId;
 
     public QuanLyBenhNhan() {
@@ -20,7 +20,7 @@ public class QuanLyBenhNhan {
         return maBenhNhan;
     }
 
-    private boolean isSoDienThoaiExists(String soDienThoai) {
+    public boolean isSoDienThoaiExists(String soDienThoai) {
         for (BenhNhan bn : ds) {
             if (bn.getSoDienThoai().equals(soDienThoai)) {
                 return true;
@@ -47,7 +47,9 @@ public class QuanLyBenhNhan {
         return "BN" + String.format("%03d", currentId);
     }
 
-    public void setCurrent(int currentId){
+    public void setCunt(int currentId) {
         this.currentId = currentId;
     }
+
+    
 }

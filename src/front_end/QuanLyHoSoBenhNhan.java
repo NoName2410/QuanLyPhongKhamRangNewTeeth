@@ -10,6 +10,8 @@ package front_end;
  */
 import back_end.QuanLyBenhNhan;
 import entity.BenhNhan;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.swing.table.DefaultTableModel;
 
 public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
@@ -17,16 +19,38 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
     /**
      * Creates new form QuanLyHoSoBenhNhan
      */
-    private QuanLyBenhNhan qlbn;
+    private static QuanLyBenhNhan qlbn;
+    public static BenhNhan bn;
+    private ArrayList<BenhNhan> db = new ArrayList<>();
+
     public QuanLyHoSoBenhNhan() {
         initComponents();
         qlbn = new QuanLyBenhNhan();
         setInitialMaBenhNhan();
+        bn = new BenhNhan();
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0); // Xóa dữ liệu cũ trong bảng
+
+        // Lặp qua danh sách benhNhanList để cập nhật lại jTable
+        if(ThongTinBenhNhan.ds!=null){
+            for (BenhNhan benhNhan : ThongTinBenhNhan.ds) {
+            Object[] row = new Object[]{
+                benhNhan.getMaBenhNhan(),
+                benhNhan.getTenBenhNhan(),
+                benhNhan.getSoDienThoai(),
+                benhNhan.getNamSinh(),
+                benhNhan.getTrieuChung(),
+                benhNhan.getDieuTri()
+            };
+            model.addRow(row); // Thêm hàng mới vào bảng
+        }
+        }
     }
 
     private void setInitialMaBenhNhan() {
         maBenhNhan.setText(qlbn.getNextMaBenhNhan());
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,6 +109,11 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton2.setText("Sửa hồ sơ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton3.setText("Xóa hồ sơ");
@@ -299,7 +328,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        BenhNhan bn = new BenhNhan();       
+        BenhNhan bn = new BenhNhan();
         bn.setTenBenhNhan(tenBenhNhan.getText());
         bn.setNamSinh(namSinh.getText());
         bn.setSoDienThoai(soDienThoai.getText());
@@ -316,9 +345,9 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-       this.setVisible(false);
-       QuanLyHoSoBenhNhanForm2 form2 = new QuanLyHoSoBenhNhanForm2();
-       form2.setVisible(true);
+        this.setVisible(false);
+        QuanLyHoSoBenhNhanForm2 form2 = new QuanLyHoSoBenhNhanForm2();
+        form2.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -328,20 +357,50 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         trangchu.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = -1;
+        selectedRow = jTable.getSelectedRow();
+        if (selectedRow != -1) {
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+            String maBenhNhan = (String) model.getValueAt(selectedRow, 0);
+            String tenBenhNhan = (String) model.getValueAt(selectedRow, 1);
+            String soDienThoai = (String) model.getValueAt(selectedRow, 2);
+            String namSinh = (String) model.getValueAt(selectedRow, 3);
+            String trieuChung = (String) model.getValueAt(selectedRow, 4);
+            String dieuTri = (String) model.getValueAt(selectedRow, 5);
+
+            bn.setMaBenhNhan(maBenhNhan);
+            bn.setTenBenhNhan(tenBenhNhan);
+            bn.setSoDienThoai(soDienThoai);
+            bn.setNamSinh(namSinh);
+            bn.setTrieuChung(trieuChung);
+            bn.setDieuTri(dieuTri);
+            ThongTinBenhNhan.ds = qlbn.getDanhSachBenhNhan();
+            this.setVisible(false);
+            SuaHoSoBenhNhan form3 = new SuaHoSoBenhNhan();
+            form3.setVisible(true);
+
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, "Hãy chọn thông tin cần sửa");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+   
     private void updateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();
         model.setRowCount(0); // Clear existing rows
 
-        for (BenhNhan bn : qlbn.getDanhSachBenhNhan()) {
+        for (BenhNhan bn : qlbn.getDanhSachBenhNhan()) {   
             model.addRow(new Object[]{
                 bn.getMaBenhNhan(),
                 bn.getTenBenhNhan(),
                 bn.getSoDienThoai(),
-                bn.getNamSinh(),         
+                bn.getNamSinh(),
                 bn.getTrieuChung(),
                 bn.getDieuTri()
             });
-        }
+        }      
     }
 
     /**

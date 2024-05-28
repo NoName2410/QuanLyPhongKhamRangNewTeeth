@@ -4,11 +4,8 @@
  */
 package front_end;
 
-import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Window;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import utils.DataValidation;
 
@@ -256,13 +253,18 @@ public class Login extends javax.swing.JFrame {
                 btnSignUpMouseClicked(evt);
             }
         });
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUpActionPerformed(evt);
+            }
+        });
         jPanel6.add(btnSignUp);
 
         jPanel7.setPreferredSize(new java.awt.Dimension(400, 50));
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Had account already? Sign in now");
+        jLabel5.setText("Had account already? Sign in now!");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -455,7 +457,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 204));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("No account? Create one");
+        jLabel6.setText("No account? Create one now!");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
@@ -585,30 +587,22 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         // TODO add your handling code here:
-        String username = txtUser.getText();
-        String pass = new String(txtPass.getText());
-        if (username.isEmpty() || pass.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui long dien du ten dang nhap va mat khau.");
-            return;
-        }
-        if (!DataValidation.validatePass(pass)) {
-            JOptionPane.showMessageDialog(this, "Password khong dung dinh dang! (Yeu cau: 1 chu hoa, 1 chu thuong, 1 so, 1 ky tu dac biet, 6-12 ky tu).");
-            return;
+        try {
+            String username = txtUser.getText();
+            String pass = txtPass.getText();
+            if (username.isEmpty() || pass.isEmpty()) {
+                throw new Exception("Vui long dien du ten dang nhap va mat khau.");
+            }
+            if (!DataValidation.validatePass(pass)) {
+                throw new Exception("Password khong dung!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignUpMouseClicked
         // TODO add your handling code here:
-        String username = txtReUser.getText();
-        String pass = new String(txtRePass.getText());
-        if (username.isEmpty() || pass.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Vui long dien du ten dang nhap va mat khau.");
-            return;
-        } else if (!DataValidation.validatePass(pass)) {
-            JOptionPane.showMessageDialog(this, "Mat khau qua yeu! (Yeu cau: 1 chu hoa, 1 chu thuong, 1 so, 1 ky tu dac biet, 6-12 ky tu).");
-            return;
-        } else
-            dgSignUp.dispose();
     }//GEN-LAST:event_btnSignUpMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -616,6 +610,31 @@ public class Login extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Khong the dang nhap Google hien tai!.");
         return;
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        try {
+            //Lấy username từ Text Field txtReUser
+            String username = txtReUser.getText(); 
+            
+            //Lấy pass từ Text Field txtRePass
+            String pass = txtRePass.getText(); 
+            
+            //Nếu username hoặc pass rỗng thì ném lỗi ra
+            if (username.isEmpty() || pass.isEmpty()) {
+                throw new Exception("Vui long dien du ten dang nhap va mat khau.");
+            } 
+            //Nếu pass không đúng định dạng thì báo mật khẩu yếu
+            else if (!DataValidation.validatePass(pass)) {
+                throw new Exception("Mat khau qua yeu! (Yeu cau: 1 chu hoa, 1 chu thuong, 1 so, 1 ky tu dac biet, 6-12 ky tu).");
+            } else {
+                //Đóng cửa sổ Sign up và giải phóng tài nguyên
+                dgSignUp.dispose();
+            }
+        } catch (Exception e) {
+            //Bắt các exception và hiển thị một cửa sổ thông báo lỗi ra màn hình
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void showSignupDialog() {
         // 1. Check if your "dgSignup" is a JDialog instance
@@ -662,6 +681,7 @@ public class Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Login().setVisible(true);
             }

@@ -4,15 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/QuanLyHoSoBenhNhan.java</file>
-            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/Dashboard.java</file>
             <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/Login.java</file>
             <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/back_end/QuanLyBenhNhan.java</file>
             <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/QuanLyHoSoBenhNhanForm2.java</file>
-            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/SuaHoSoBenhNhan.java</file>
-            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/ThongTinBenhNhan.java</file>
-            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/QuanLyHoaDon.java</file>
-            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/MaBenhNhan.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/utils/DataValidation.java</file>
             <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/entity/BenhNhan.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/Dashboard.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/utils/InvalidSoDienThoaiException.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/entity/MaBenhNhan.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/entity/ThongTinBenhNhan.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/SuaHoSoBenhNhan.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/utils/InvalidMaBenhNhanException.java</file>
+            <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/QuanLyHoaDon.java</file>
             <file>file:/D:/LapTrinhJava/BC_Nhom3/QuanLyPhongKhamRangNewTeeth/src/front_end/QuanLyKhoThuoc.java</file>
         </group>
     </open-files>

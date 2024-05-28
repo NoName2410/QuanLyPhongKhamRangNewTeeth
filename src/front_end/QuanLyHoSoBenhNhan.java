@@ -8,6 +8,7 @@ package front_end;
  *
  * @author PC
  */
+import entity.ThongTinBenhNhan;
 import back_end.QuanLyBenhNhan;
 import entity.BenhNhan;
 import java.util.ArrayList;
@@ -33,7 +34,8 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
 
         // Lặp qua danh sách benhNhanList để cập nhật lại jTable
         if(ThongTinBenhNhan.ds!=null){
-            for (BenhNhan benhNhan : ThongTinBenhNhan.ds) {
+            qlbn.setDanhSachBenhNhan(ThongTinBenhNhan.ds);
+            for (BenhNhan benhNhan : qlbn.getDanhSachBenhNhan()) {
             Object[] row = new Object[]{
                 benhNhan.getMaBenhNhan(),
                 benhNhan.getTenBenhNhan(),
@@ -334,13 +336,10 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         bn.setSoDienThoai(soDienThoai.getText());
         bn.setTrieuChung(trieuChung.getText());
         bn.setDieuTri((String) dieuTri.getSelectedItem());
-
-        if (qlbn.themBenhNhan(bn)) {
-            updateTable();
-            maBenhNhan.setText(qlbn.getNextMaBenhNhan());
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Thông tin bệnh nhân không hợp lệ hoặc số điện thoại đã tồn tại.");
-        }
+        qlbn.themBenhNhan(bn);
+        updateTable();
+        maBenhNhan.setText(qlbn.getNextMaBenhNhan());
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -388,8 +387,9 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
 
    
     private void updateTable() {
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
-        model.setRowCount(0); // Clear existing rows
+
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+            model.setRowCount(0); // Clear existing rows
 
         for (BenhNhan bn : qlbn.getDanhSachBenhNhan()) {   
             model.addRow(new Object[]{
@@ -400,7 +400,8 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
                 bn.getTrieuChung(),
                 bn.getDieuTri()
             });
-        }      
+        } 
+  
     }
 
     /**

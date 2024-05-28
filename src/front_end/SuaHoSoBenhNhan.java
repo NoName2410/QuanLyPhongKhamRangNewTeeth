@@ -4,6 +4,7 @@
  */
 package front_end;
 
+import entity.ThongTinBenhNhan;
 import back_end.QuanLyBenhNhan;
 import entity.BenhNhan;
 import java.util.ArrayList;

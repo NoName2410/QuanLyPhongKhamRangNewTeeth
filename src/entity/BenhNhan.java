@@ -4,6 +4,9 @@
  */
 package entity;
 
+import java.util.ArrayList;
+import utils.InvalidSoDienThoaiException;
+import utils.InvalidMaBenhNhanException;
 
 /**
  *
@@ -77,28 +80,45 @@ public class BenhNhan {
         this.dieuTri = dieuTri;
     }
     
-    // Kiểm tra điều kiện của mã bệnh nhân và số điện thoại
-    public boolean isValid() {
-        return isSoDienThoaiValid();
-    }
+//    // Kiểm tra điều kiện của mã bệnh nhân và số điện thoại
+//    public boolean isValid() {
+//        return isSoDienThoaiValid();
+//    }
+//
+//    // Kiểm tra mã bệnh nhân không bị trùng trong danh sách
+//    
+//    private boolean isSoDienThoaiValid() {
+//        if (soDienThoai == null || soDienThoai.trim().isEmpty()) {
+//            return false;
+//        }
+//        if (soDienThoai.length() != 10) {
+//            return false;
+//        }
+//        for (char c : soDienThoai.toCharArray()) {
+//            if (!Character.isDigit(c)) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+//    
 
-    
 
-    private boolean isSoDienThoaiValid() {
+    // Kiểm tra số điện thoại
+    public void isSoDienThoaiValid() throws InvalidSoDienThoaiException {
         if (soDienThoai == null || soDienThoai.trim().isEmpty()) {
-            return false;
+            throw new InvalidSoDienThoaiException("Số điện thoại không được để trống");
         }
         if (soDienThoai.length() != 10) {
-            return false;
+            throw new InvalidSoDienThoaiException("Số điện thoại phải có độ dài 10 ký tự");
         }
         for (char c : soDienThoai.toCharArray()) {
             if (!Character.isDigit(c)) {
-                return false;
+                throw new InvalidSoDienThoaiException("Số điện thoại chỉ được chứa các chữ số");
             }
         }
-        return true;
+
     }
-    
     public static void main(String args[]) {
         
         

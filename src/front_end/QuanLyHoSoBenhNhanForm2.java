@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package front_end;
+import entity.MaBenhNhan;
 import back_end.QuanLyBenhNhan;
 /**
  *

@@ -155,6 +155,11 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
 
         dieuTri.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         dieuTri.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nội trú", "Ngoại trú" }));
+        dieuTri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dieuTriActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel7.setText("Điều trị");
@@ -327,6 +332,10 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         Dashboard trangchu = new Dashboard();
         trangchu.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void dieuTriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dieuTriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dieuTriActionPerformed
 
     private void updateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();

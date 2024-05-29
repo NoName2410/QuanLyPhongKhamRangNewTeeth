@@ -5,6 +5,10 @@
 package front_end;
 
 import java.awt.Dimension;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import utils.DataValidation;
@@ -37,12 +41,12 @@ public class Login extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel9 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        txtName = new javax.swing.JTextField();
+        grGioiTinh = new javax.swing.JPanel();
+        radNam = new javax.swing.JRadioButton();
+        radNu = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        radKhac = new javax.swing.JRadioButton();
         jPanel10 = new javax.swing.JPanel();
         txtReUser = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -110,7 +114,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2)
+                .addComponent(txtName)
                 .addGap(5, 5, 5))
         );
         jPanel8Layout.setVerticalGroup(
@@ -119,45 +123,46 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTextField2)
+            .addComponent(txtName)
         );
 
-        radSex.add(jRadioButton1);
-        jRadioButton1.setText("Nam");
+        radSex.add(radNam);
+        radNam.setSelected(true);
+        radNam.setText("Nam");
 
-        radSex.add(jRadioButton2);
-        jRadioButton2.setText("Nu");
+        radSex.add(radNu);
+        radNu.setText("Nu");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Gioi tinh:");
 
-        radSex.add(jRadioButton3);
-        jRadioButton3.setText("Khac");
+        radSex.add(radKhac);
+        radKhac.setText("Khac");
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout grGioiTinhLayout = new javax.swing.GroupLayout(grGioiTinh);
+        grGioiTinh.setLayout(grGioiTinhLayout);
+        grGioiTinhLayout.setHorizontalGroup(
+            grGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(grGioiTinhLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(radNam)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton2)
+                .addComponent(radNu)
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton3)
+                .addComponent(radKhac)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        grGioiTinhLayout.setVerticalGroup(
+            grGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(grGioiTinhLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(grGioiTinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(radNam)
+                    .addComponent(radNu)
+                    .addComponent(radKhac))
                 .addContainerGap())
         );
 
@@ -224,7 +229,7 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                             .addGap(60, 60, 60)
                             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(grGioiTinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -233,7 +238,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(grGioiTinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -582,23 +587,32 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
-        // TODO add your handling code here:
         try {
             String username = txtUser.getText();
             String pass = txtPass.getText();
             if (username.isEmpty() || pass.isEmpty()) {
                 throw new Exception("Vui long dien du ten dang nhap va mat khau.");
             }
-            if (!DataValidation.validatePass(pass)) {
-                throw new Exception("Password khong dung!");
+            BufferedReader reader = new BufferedReader(new FileReader("G:/My Drive/Term6/LapTrinhJava/Nhom3_LapTrinhJava/BaiTapLon/QuanLyPhongKhamRangNewTeeth/src/data/userdata.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length != 2) { // Kiểm tra dữ liệu có đúng định dạng (username,password)
+                    continue; // Bỏ qua dòng không hợp lệ
+                }
+                if (username.equals(data[0]) && (pass.equals(data[1]))) {
+                    JOptionPane.showMessageDialog(this, "Truy cập thành công!");
+                    return;
+                }
             }
+            throw new Exception("Tài khoản hoặc mật khẩu không đúng!");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignUpMouseClicked
@@ -613,20 +627,36 @@ public class Login extends javax.swing.JFrame {
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         try {
+            //Lấy name từ Text Field txtName
+            String name = txtName.getText();
+
+            //Lấy giới tính từ Radio Button radGioiTinh
+            String sexTemp;
+            if (radNu.isSelected()) {
+                sexTemp = radNu.getText();
+            } else if (radNam.isSelected()) {
+                sexTemp = radNam.getText();
+            } else {
+                sexTemp = radKhac.getText();
+            }
+
             //Lấy username từ Text Field txtReUser
-            String username = txtReUser.getText(); 
-            
+            String username = txtReUser.getText();
+
             //Lấy pass từ Text Field txtRePass
-            String pass = txtRePass.getText(); 
-            
+            String pass = txtRePass.getText();
+
             //Nếu username hoặc pass rỗng thì ném lỗi ra
             if (username.isEmpty() || pass.isEmpty()) {
                 throw new Exception("Vui long dien du ten dang nhap va mat khau.");
-            } 
-            //Nếu pass không đúng định dạng thì báo mật khẩu yếu
+            } //Nếu pass không đúng định dạng thì báo mật khẩu yếu
             else if (!DataValidation.validatePass(pass)) {
                 throw new Exception("Mat khau qua yeu! (Yeu cau: 1 chu hoa, 1 chu thuong, 1 so, 1 ky tu dac biet, 6-12 ky tu).");
             } else {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("G:/My Drive/Term6/LapTrinhJava/Nhom3_LapTrinhJava/BaiTapLon/QuanLyPhongKhamRangNewTeeth/src/data/userdata.txt", true));
+                writer.write(username + "," + pass + "\n");
+                writer.flush(); // Đảm bảo dữ liệu đã được ghi vào file
+                JOptionPane.showMessageDialog(this, "Đăng ký thành công! Mời bạn đăng nhập!");
                 //Đóng cửa sổ Sign up và giải phóng tài nguyên
                 dgSignUp.dispose();
             }
@@ -694,6 +724,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton btnSignUp;
     private javax.swing.JCheckBox ckRM;
     private javax.swing.JDialog dgSignUp;
+    private javax.swing.JPanel grGioiTinh;
     private javax.swing.JPanel hdLogin;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -718,15 +749,14 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel loginArea;
     private javax.swing.JLabel navFP;
     private javax.swing.JPanel password;
+    private javax.swing.JRadioButton radKhac;
+    private javax.swing.JRadioButton radNam;
+    private javax.swing.JRadioButton radNu;
     private javax.swing.ButtonGroup radSex;
+    private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JPasswordField txtRePass;
     private javax.swing.JTextField txtReUser;

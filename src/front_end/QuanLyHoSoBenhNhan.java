@@ -11,8 +11,13 @@ package front_end;
 import entity.ThongTinBenhNhan;
 import back_end.QuanLyBenhNhan;
 import entity.BenhNhan;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
@@ -110,7 +115,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(836, 609));
         setResizable(false);
 
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jButton1.setText("Tạo hồ sơ");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +123,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jButton2.setText("Sửa hồ sơ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +131,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jButton3.setText("Xóa hồ sơ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +139,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jButton4.setText("Tìm kiếm");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,8 +147,13 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jButton5.setText("Lưu hồ sơ");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,7 +182,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton3))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tenBenhNhan.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -224,7 +234,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         jScrollPane4.setViewportView(trieuChung);
 
         jTable.setBorder(new javax.swing.border.MatteBorder(null));
-        jTable.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTable.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jTable.setForeground(new java.awt.Color(51, 51, 51));
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -243,7 +253,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,6 +338,11 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         jMenu2.setText("Edit");
 
         jMenuItem3.setText("Mô tả");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -340,8 +355,8 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 749, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,7 +394,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         QuanLyHoSoBenhNhanForm2 form2 = new QuanLyHoSoBenhNhanForm2();
         form2.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-    
+
     //Quay lại trang chủ
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
@@ -447,7 +462,50 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
     //Tìm kiếm bệnh nhân theo mã bệnh nhân
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        TimKiemHoSoBenhNhan form5 = new TimKiemHoSoBenhNhan();
+        form5.setVisible(true);
+        ThongTinBenhNhan.ds = qlbn.getDanhSachBenhNhan();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    //Xuất ra file csv
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try {
+            JFileChooser chooser = new JFileChooser();
+            int i = chooser.showSaveDialog(this);
+            if (i == JFileChooser.APPROVE_OPTION) {
+                File file = chooser.getSelectedFile();
+                try (FileWriter writer = new FileWriter(file)) {
+                    // Write the header of the CSV file
+                    writer.write("Mã bệnh nhân,Tên bệnh nhân,Số điện thoại,Năm sinh,Triệu chứng,Điều trị\n");
+
+                    // Write the patient data
+                    for (BenhNhan bn : qlbn.getDanhSachBenhNhan()) {
+                        writer.write(String.format("%s,%s,%s,%s,%s,%s\n",
+                                bn.getMaBenhNhan(),
+                                bn.getTenBenhNhan(),
+                                bn.getSoDienThoai(),
+                                bn.getNamSinh(),
+                                bn.getTrieuChung(),
+                                bn.getDieuTri()));
+                    }
+                }
+                JOptionPane.showMessageDialog(this, "Lưu hồ sơ bệnh nhân thành công!");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        MoTaChucNangQuanLyHoSoBenhNhan form6 = new MoTaChucNangQuanLyHoSoBenhNhan ();
+        ThongTinBenhNhan.ds = qlbn.getDanhSachBenhNhan();
+        form6.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void updateTable() {
 

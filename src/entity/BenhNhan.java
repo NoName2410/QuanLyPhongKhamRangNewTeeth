@@ -7,6 +7,7 @@ package entity;
 import java.util.ArrayList;
 import utils.InvalidSoDienThoaiException;
 import utils.InvalidMaBenhNhanException;
+import utils.InvalidTenBenhNhanException;
 
 /**
  *
@@ -118,6 +119,12 @@ public class BenhNhan {
             }
         }
 
+    }
+    
+    public void isTenBenhNhanNull()throws InvalidTenBenhNhanException{
+        if (tenBenhNhan == null || tenBenhNhan.trim().isEmpty()) {
+            throw new InvalidTenBenhNhanException("Tên bệnh nhân không được để trống");
+        }
     }
     public static void main(String args[]) {
         

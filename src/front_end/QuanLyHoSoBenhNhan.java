@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package views;
+package front_end;
 
 /**
  *
  * @author PC
  */
-import controller.QuanLyBenhNhan;
-import model.BenhNhan;
+import back_end.QuanLyBenhNhan;
+import entity.BenhNhan;
 import javax.swing.table.DefaultTableModel;
 
 public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {

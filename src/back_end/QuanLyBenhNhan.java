@@ -1,7 +1,7 @@
-package controller;
+package back_end;
 
-import model.BenhNhan;
-import views.MaBenhNhan;
+import entity.BenhNhan;
+import front_end.MaBenhNhan;
 import java.util.ArrayList;
 
 public class QuanLyBenhNhan {

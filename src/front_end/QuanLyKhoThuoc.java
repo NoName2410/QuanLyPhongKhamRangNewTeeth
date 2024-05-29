@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package front_end;
+
 import entity.Thuoc;
 import javax.swing.JOptionPane;
 
@@ -45,7 +46,7 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtfMaThuoc = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        jtbThuoc = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane12 = new javax.swing.JScrollPane();
         jtfSoLuong = new javax.swing.JTextPane();
@@ -61,6 +62,7 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
         jtfTimKiem = new javax.swing.JTextPane();
         jbtTimKiem = new javax.swing.JButton();
         jtfTenThuoc = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
@@ -99,11 +101,13 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
         jtfMaThuoc.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(jtfMaThuoc);
 
-        jTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        jtbThuoc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jtbThuoc.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jtbThuoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"A01AB01", "Paracetamol", "Paracetamol", "Thuốc giảm đau, hạ sốt", null, "Typically 500mg or 1000mg tablets", "Tablets, capsules, suspensions", "Used to relieve pain and fever", "Used to relieve pain and fever"},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Mã thuốc", "Tên thuốc", "Thành phần", "Nhóm thuốc", "Số lượng", "Dạng bào chế", "Nhà sản xuất", "Hạn sử dụng", "Mô tả"
@@ -117,9 +121,9 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jTable.setToolTipText("");
-        jTable.setSelectionBackground(new java.awt.Color(0, 0, 255));
-        jScrollPane6.setViewportView(jTable);
+        jtbThuoc.setToolTipText("");
+        jtbThuoc.setSelectionBackground(new java.awt.Color(0, 0, 255));
+        jScrollPane6.setViewportView(jtbThuoc);
 
         jLabel11.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel11.setText("Số lượng");
@@ -185,6 +189,13 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Sắp xếp theo tên");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -199,6 +210,8 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
                             .addComponent(jbtSua, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(34, 34, 34)
                             .addComponent(jbtXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(39, 39, 39)
+                            .addComponent(jButton1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -277,7 +290,8 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jbtThem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbtSua, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbtXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(385, 385, 385))
@@ -337,59 +351,61 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
         String thanhPhan = jtfThanhPhan.getText().trim();
         String nhomThuoc = (String) jcbNhomThuoc.getSelectedItem();
         String nhaSanXuat = jtfNSX.getText().trim();
+        String soLuongStr = jtfSoLuong.getText().trim();
+        String dangBaoChe = (String) jtfDangBaoChe.getSelectedItem();
+        String moTa = jtaMoTa.getText().trim();
+        if (maThuoc.isEmpty() || tenThuoc.isEmpty() || thanhPhan.isEmpty() || nhomThuoc == null || nhaSanXuat.isEmpty() || soLuongStr.isEmpty() || dangBaoChe == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng điền tất cả các trường bắt buộc", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         float soLuong;
         try {
-            soLuong = Float.parseFloat(jtfSoLuong.getText().trim());
+            soLuong = Float.parseFloat(soLuongStr);
             if (soLuong < 0) {
                 throw new NumberFormatException("Số lượng thuốc không được âm");
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Số lượng thuốc không hợp lệ", "Lỗi", JOptionPane.ERROR_MESSAGE);
-            return; // Exit the method if number format is invalid
+            JOptionPane.showMessageDialog(this, "Số lượng thuốc không hợp lệ: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        String dangBaoChe = (String) jtfDangBaoChe.getSelectedItem();
-        String moTa = jtaMoTa.getText().trim();
-
-        // Validate input (optional, based on your requirements)
-        // ... validation logic ...
-
-        // Create a new Thuoc object using the user input
         Thuoc newThuoc = new Thuoc(maThuoc, tenThuoc, thanhPhan, nhomThuoc, nhaSanXuat, soLuong, dangBaoChe, moTa);
-
-        // Add the new drug to the system (e.g., database, data structure)
         try {
-            //addDrug(newThuoc);
-            // Update GUI to reflect the addition (e.g., clear input fields, refresh table)
-            // ... update GUI code ...
+            //addThuoc(newThuoc); 
             JOptionPane.showMessageDialog(this, "Thêm thuốc thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
+            // Log the exception (if logging is set up in your application)
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Lỗi khi thêm thuốc: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jbtThemActionPerformed
 
     private void jbtXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtXoaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtXoaActionPerformed
 
     private void jbtSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtSuaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtSuaActionPerformed
 
     private void jbtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtTimKiemActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jbtTimKiemActionPerformed
 
     private void jcbNhomThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbNhomThuocActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jcbNhomThuocActionPerformed
 
     private void jtfDangBaoCheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDangBaoCheActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jtfDangBaoCheActionPerformed
 
     private void jtfTenThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTenThuocActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jtfTenThuocActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -427,6 +443,7 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -447,13 +464,13 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTable jTable;
     private javax.swing.JButton jbtSua;
     private javax.swing.JButton jbtThem;
     private javax.swing.JButton jbtTimKiem;
     private javax.swing.JButton jbtXoa;
     private javax.swing.JComboBox<String> jcbNhomThuoc;
     private javax.swing.JTextArea jtaMoTa;
+    private javax.swing.JTable jtbThuoc;
     private javax.swing.JComboBox<String> jtfDangBaoChe;
     private javax.swing.JTextPane jtfHanSuDung;
     private javax.swing.JTextPane jtfMaThuoc;

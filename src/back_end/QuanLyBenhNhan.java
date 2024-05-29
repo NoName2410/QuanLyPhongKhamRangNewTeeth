@@ -9,17 +9,14 @@ public class QuanLyBenhNhan {
 
     private ArrayList<BenhNhan> ds;
     private int currentId;
-    private boolean kt = true;
-
     public QuanLyBenhNhan() {
         ds = new ArrayList<>();
         currentId = MaBenhNhan.getCurrentID(); // Bắt đầu từ 1 hoặc giá trị mong muốn
     }
 
     private String generateMaBenhNhan() {
-        String maBenhNhan = "BN" + String.format("%03d", currentId);
-        if(kt && this.currentId !=0 )
-            currentId++;
+        String maBenhNhan = "BN" + String.format("%03d", currentId);  
+        currentId++;  
         return maBenhNhan;
     }
 
@@ -42,17 +39,15 @@ public class QuanLyBenhNhan {
      public void themBenhNhan(BenhNhan bn) {
         try {          
             // Tạo mã bệnh nhân mới
-            String newMaBenhNhan = generateMaBenhNhan();
+            String newMaBenhNhan = generateMaBenhNhan();           
             // Kiểm tra mã bệnh nhân và số điện thoại
             bn.isSoDienThoaiValid();
             isMaBenhNhanAlreadyExists(newMaBenhNhan);
             isSoDienThoaiExists(bn.getSoDienThoai()); 
-            this.currentId = 1;
             bn.setMaBenhNhan(newMaBenhNhan);
-            ds.add(bn);
+            ds.add(bn);      
         } catch (InvalidSoDienThoaiException | InvalidMaBenhNhanException e) {
-            javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());
-            kt = false;
+            javax.swing.JOptionPane.showMessageDialog(null, e.getMessage());        
         }
     }
 

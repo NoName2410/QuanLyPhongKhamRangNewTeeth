@@ -15,8 +15,29 @@ public class Thuoc {
     private String nhomThuoc;
     private String nhaSanXuat;
     private float soLuong;
+    private String hanSuDung;
     private String dangBaoChe;
     private String moTa;
+
+    public Thuoc(String maThuoc, String tenThuoc, String thanhPhan, String nhomThuoc, String nhaSanXuat, float soLuong, String hanSuDung, String dangBaoChe, String moTa) {
+        this.maThuoc = maThuoc;
+        this.tenThuoc = tenThuoc;
+        this.thanhPhan = thanhPhan;
+        this.nhomThuoc = nhomThuoc;
+        this.nhaSanXuat = nhaSanXuat;
+        this.soLuong = soLuong;
+        this.hanSuDung = hanSuDung;
+        this.dangBaoChe = dangBaoChe;
+        this.moTa = moTa;
+    }
+    
+    public String getHanSuDung() {
+        return hanSuDung;
+    }
+
+    public void setHanSuDung(String hanSuDung) {
+        this.hanSuDung = hanSuDung;
+    }
 
     public Thuoc(String maThuoc, String tenThuoc, String thanhPhan, String nhomThuoc, String nhaSanXuat, float soLuong, String dangBaoChe, String moTa) {
         this.maThuoc = maThuoc;

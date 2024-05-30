@@ -20,6 +20,7 @@ public class BenhNhan {
     private String namSinh;
     private String trieuChung;
     private String dieuTri;
+    private String ngayKham;
 
     public BenhNhan() {
     }
@@ -80,30 +81,15 @@ public class BenhNhan {
     public void setDieuTri(String dieuTri) {
         this.dieuTri = dieuTri;
     }
-    
-//    // Kiểm tra điều kiện của mã bệnh nhân và số điện thoại
-//    public boolean isValid() {
-//        return isSoDienThoaiValid();
-//    }
-//
-//    // Kiểm tra mã bệnh nhân không bị trùng trong danh sách
-//    
-//    private boolean isSoDienThoaiValid() {
-//        if (soDienThoai == null || soDienThoai.trim().isEmpty()) {
-//            return false;
-//        }
-//        if (soDienThoai.length() != 10) {
-//            return false;
-//        }
-//        for (char c : soDienThoai.toCharArray()) {
-//            if (!Character.isDigit(c)) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//    
 
+    public String getNgayKham() {
+        return ngayKham;
+    }
+
+    public void setNgayKham(String ngayKham) {
+        this.ngayKham = ngayKham;
+    }
+    
 
     // Kiểm tra số điện thoại
     public void isSoDienThoaiValid() throws InvalidSoDienThoaiException {

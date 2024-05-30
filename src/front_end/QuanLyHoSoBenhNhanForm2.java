@@ -53,7 +53,7 @@ public class QuanLyHoSoBenhNhanForm2 extends javax.swing.JFrame {
             }
         });
 
-        currentID.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        currentID.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         currentID.setText("0");
         currentID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

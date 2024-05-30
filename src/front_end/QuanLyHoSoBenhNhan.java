@@ -47,7 +47,8 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
                     benhNhan.getSoDienThoai(),
                     benhNhan.getNamSinh(),
                     benhNhan.getTrieuChung(),
-                    benhNhan.getDieuTri()
+                    benhNhan.getDieuTri(),
+                    benhNhan.getNgayKham()
                 };
                 model.addRow(row); // Thêm hàng mới vào bảng
             }
@@ -97,6 +98,8 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         trieuChung = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
+        jCalendarComboBox1 = new de.wannawork.jcalendar.JCalendarComboBox();
+        ngayKham = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -241,12 +244,17 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã bệnh nhân", "Tên bệnh nhân", "Số điện thoại", "Năm sinh", "Triệu chứng", "Điều trị"
+                "Mã bệnh nhân", "Tên bệnh nhân", "Số điện thoại", "Năm sinh", "Triệu chứng", "Điều trị", "Thời gian khám "
             }
         ));
         jTable.setToolTipText("");
+        jTable.setGridColor(new java.awt.Color(255, 255, 255));
         jTable.setSelectionBackground(new java.awt.Color(0, 0, 255));
         jScrollPane6.setViewportView(jTable);
+
+        ngayKham.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        ngayKham.setForeground(new java.awt.Color(51, 51, 51));
+        ngayKham.setText("Thời gian khám bệnh");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -268,10 +276,12 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(94, 94, 94)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCalendarComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(dieuTri, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ngayKham)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131)))
@@ -281,37 +291,39 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ngayKham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCalendarComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dieuTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dieuTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -363,7 +375,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -380,6 +392,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
         bn.setSoDienThoai(soDienThoai.getText());
         bn.setTrieuChung(trieuChung.getText());
         bn.setDieuTri((String) dieuTri.getSelectedItem());
+        bn.setNgayKham(jCalendarComboBox1.getDate().toString());
         qlbn.themBenhNhan(bn);
         updateTable();
         maBenhNhan.setText(qlbn.getNextMaBenhNhan());
@@ -416,6 +429,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             String namSinh = (String) model.getValueAt(selectedRow, 3);
             String trieuChung = (String) model.getValueAt(selectedRow, 4);
             String dieuTri = (String) model.getValueAt(selectedRow, 5);
+            String ngayKham = (String)model.getValueAt(selectedRow, 6);
 
             bn.setMaBenhNhan(maBenhNhan);
             bn.setTenBenhNhan(tenBenhNhan);
@@ -423,6 +437,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
             bn.setNamSinh(namSinh);
             bn.setTrieuChung(trieuChung);
             bn.setDieuTri(dieuTri);
+            bn.setNgayKham(ngayKham);
             ThongTinBenhNhan.ds = qlbn.getDanhSachBenhNhan();
             this.setVisible(false);
             SuaHoSoBenhNhan form3 = new SuaHoSoBenhNhan();
@@ -478,17 +493,18 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
                 File file = chooser.getSelectedFile();
                 try (FileWriter writer = new FileWriter(file)) {
                     // Write the header of the CSV file
-                    writer.write("Mã bệnh nhân,Tên bệnh nhân,Số điện thoại,Năm sinh,Triệu chứng,Điều trị\n");
+                    writer.write("Mã bệnh nhân,Tên bệnh nhân,Số điện thoại,Năm sinh,Triệu chứng,Điều trị,Ngày khám bệnh\n");
 
                     // Write the patient data
                     for (BenhNhan bn : qlbn.getDanhSachBenhNhan()) {
-                        writer.write(String.format("%s,%s,%s,%s,%s,%s\n",
+                        writer.write(String.format("%s,%s,%s,%s,%s,%s,%s\n",
                                 bn.getMaBenhNhan(),
                                 bn.getTenBenhNhan(),
                                 bn.getSoDienThoai(),
                                 bn.getNamSinh(),
                                 bn.getTrieuChung(),
-                                bn.getDieuTri()));
+                                bn.getDieuTri(),
+                                bn.getNgayKham()));
                     }
                 }
                 JOptionPane.showMessageDialog(this, "Lưu hồ sơ bệnh nhân thành công!");
@@ -519,7 +535,8 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
                 bn.getSoDienThoai(),
                 bn.getNamSinh(),
                 bn.getTrieuChung(),
-                bn.getDieuTri()
+                bn.getDieuTri(),
+                bn.getNgayKham()
             });
         }
 
@@ -567,6 +584,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -594,6 +612,7 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextPane maBenhNhan;
     private javax.swing.JTextPane namSinh;
+    private javax.swing.JLabel ngayKham;
     private javax.swing.JTextPane soDienThoai;
     private javax.swing.JTextPane tenBenhNhan;
     private javax.swing.JTextPane trieuChung;

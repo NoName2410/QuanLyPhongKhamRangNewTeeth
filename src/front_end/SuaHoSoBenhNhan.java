@@ -7,7 +7,10 @@ package front_end;
 import entity.ThongTinBenhNhan;
 import back_end.QuanLyBenhNhan;
 import entity.BenhNhan;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -34,6 +37,17 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
         vNamSinh.setText(QuanLyHoSoBenhNhan.bn.getNamSinh());
         vDieuTri.setSelectedItem(QuanLyHoSoBenhNhan.bn.getDieuTri());
         vTrieuChung.setText(QuanLyHoSoBenhNhan.bn.getTrieuChung());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        try {
+            // Chuyển đổi chuỗi thành đối tượng Date
+            Date date = dateFormat.parse(QuanLyHoSoBenhNhan.bn.getNgayKham());
+            
+            // Đặt giá trị ngày vào JDateChooser
+            jCalendarComboBox1.setDate(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
     }
 
     /**
@@ -66,6 +80,8 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jCalendarComboBox1 = new de.wannawork.jcalendar.JCalendarComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(755, 657));
@@ -136,6 +152,12 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel9.setText("Thời gian khám bệnh");
+
+        jCalendarComboBox1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -146,14 +168,15 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1)
@@ -161,12 +184,13 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
                             .addComponent(jScrollPane4)
                             .addComponent(jScrollPane5)
                             .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)))))
-                .addContainerGap(166, Short.MAX_VALUE))
+                                .addComponent(jButton2))
+                            .addComponent(jCalendarComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,19 +213,23 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jCalendarComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(vDieuTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vDieuTri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addGap(74, 74, 74))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(37, 37, 37))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,6 +263,7 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
             x.setNamSinh(bn.getNamSinh());
             x.setDieuTri(bn.getDieuTri());
             x.setTrieuChung(bn.getTrieuChung());
+            x.setNgayKham(bn.getNgayKham());
             return true;
         }
     }
@@ -251,6 +280,7 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
         bn.setNamSinh(vNamSinh.getText());
         bn.setDieuTri(vDieuTri.getSelectedItem().toString());
         bn.setTrieuChung(vTrieuChung.getText());
+        bn.setNgayKham(jCalendarComboBox1.getDate().toString());
         if (SuaBenhNhan(bn)) {
             javax.swing.JOptionPane.showMessageDialog(this, "Sửa thông tin bệnh nhân thành công.");
         } 
@@ -294,6 +324,7 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private de.wannawork.jcalendar.JCalendarComboBox jCalendarComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -301,6 +332,7 @@ public class SuaHoSoBenhNhan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

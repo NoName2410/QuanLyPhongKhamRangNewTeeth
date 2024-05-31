@@ -340,7 +340,6 @@ public class QuanLyHoSoBenhNhan extends javax.swing.JFrame {
     private void updateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();
         model.setRowCount(0); // Clear existing rows
-
         for (BenhNhan bn : qlbn.getDanhSachBenhNhan()) {
             model.addRow(new Object[]{
                 bn.getMaBenhNhan(),

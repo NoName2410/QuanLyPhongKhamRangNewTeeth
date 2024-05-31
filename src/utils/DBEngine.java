@@ -9,10 +9,13 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.function.Function;
 
@@ -22,14 +25,15 @@ import java.util.function.Function;
  */
 public class DBEngine implements Engine {
 
-    @Override
     public <T> void writeToFile(java.util.List<T> list, String fileName) {
         File file = new File(fileName);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            for (T item : list) {
-                writer.write(item.toString());
-                writer.newLine();
-            }
+        try {
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(list);
+            oos.close();
+            fos.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -39,13 +43,18 @@ public class DBEngine implements Engine {
     public <T> java.util.List<T> readDataFromFile(String fileName) {
         java.util.List<T> list = new ArrayList<>();
         File file = new File(fileName);
-        if (file.exists() && file.length() > 0) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    list.add((T) line);
-                }
+        if (file.length() > 0) {
+            try {
+                file.createNewFile();
+                FileInputStream fos = new FileInputStream(file);
+                ObjectInputStream oos = new ObjectInputStream(fos);
+                Object o = oos.readObject();
+                list = (java.util.List<T>) o;
+                oos.close();
+                fos.close();
             } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
             }
         }

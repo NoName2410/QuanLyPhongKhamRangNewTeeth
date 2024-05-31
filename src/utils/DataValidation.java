@@ -35,7 +35,45 @@ public class DataValidation {
         return matcher.matches();
     }
 
-    public class DateValidator {
+    public static boolean isNumeric(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c) && c != '.' && c != '-') {
+                return false;
+            }
+        }
+        // Kiểm tra nếu có nhiều hơn một dấu . trong chuỗi
+        int dotCount = 0;
+        for (char c : str.toCharArray()) {
+            if (c == '.') {
+                dotCount++;
+            }
+        }
+        if (dotCount > 1) {
+            return false;
+        }
+        // Kiểm tra nếu dấu - không ở đầu chuỗi hoặc nếu có nhiều hơn một dấu -
+        if (str.indexOf('-') != 0 || str.lastIndexOf('-') > 0) {
+            return false;
+        }
+        // Kiểm tra nếu chuỗi chỉ chứa dấu -
+        if (str.equals("-")) {
+            return false;
+        }
+        // Kiểm tra nếu chuỗi bắt đầu bằng . hoặc kết thúc bằng .
+        if (str.startsWith(".") || str.endsWith(".")) {
+            return false;
+        }
+        // Kiểm tra nếu chuỗi bắt đầu bằng - và kết thúc bằng .
+        if (str.startsWith("-") && str.endsWith(".")) {
+            return false;
+        }
+        return true;
+    }
+
+    public static class DateValidator {
         private static final String DATE_PATTERN
                 = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/((19|20)\\d\\d)$";
         private static final Pattern pattern = Pattern.compile(DATE_PATTERN);

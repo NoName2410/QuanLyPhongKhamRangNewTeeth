@@ -9,12 +9,18 @@ package back_end;
  * @author caoba
  */
 import entity.Thuoc;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.swing.table.DefaultTableModel;
 
 public class QuanLyThuoc {
     private List<Thuoc> danhSachThuoc;
@@ -23,6 +29,15 @@ public class QuanLyThuoc {
         this.danhSachThuoc = new ArrayList<>();
     }
 
+    public List<Thuoc> getDanhSachThuoc() {
+        return danhSachThuoc;
+    }
+
+    public void setDanhSachThuoc(List<Thuoc> danhSachThuoc) {
+        this.danhSachThuoc = danhSachThuoc;
+    }
+
+    
     // Thêm thuốc vào danh sách
     public void themThuoc(Thuoc thuoc) {
         danhSachThuoc.add(thuoc);
@@ -36,57 +51,6 @@ public class QuanLyThuoc {
                 .findFirst();
     }
 
-    // Cập nhật thông tin thuốc
-    public boolean capNhatThuoc(Thuoc thuocCapNhat) {
-        Optional<Thuoc> thuocOptional = timThuoc(thuocCapNhat.getMaThuoc());
-        if (thuocOptional.isPresent()) {
-            Thuoc thuoc = thuocOptional.get();
-            thuoc.setTenThuoc(thuocCapNhat.getTenThuoc());
-            thuoc.setThanhPhan(thuocCapNhat.getThanhPhan());
-            thuoc.setHanSuDung(thuocCapNhat.getHanSuDung());
-            thuoc.setNhomThuoc(thuocCapNhat.getNhomThuoc());
-            thuoc.setNhaSanXuat(thuocCapNhat.getNhaSanXuat());
-            thuoc.setSoLuong(thuocCapNhat.getSoLuong());
-            thuoc.setDangBaoChe(thuocCapNhat.getDangBaoChe());
-            thuoc.setMoTa(thuocCapNhat.getMoTa());
-            System.out.println("Cập nhật thuốc thành công: " + thuoc.getMaThuoc());
-            return true;
-        }
-        System.out.println("Không tìm thấy thuốc với mã: " + thuocCapNhat.getMaThuoc());
-        return false;
-    }
-
-    // Xóa thuốc theo mã
-    public boolean xoaThuoc(String maThuoc) {
-        Optional<Thuoc> thuocOptional = timThuoc(maThuoc);
-        if (thuocOptional.isPresent()) {
-            danhSachThuoc.remove(thuocOptional.get());
-            System.out.println("Xóa thuốc thành công: " + maThuoc);
-            return true;
-        }
-        System.out.println("Không tìm thấy thuốc với mã: " + maThuoc);
-        return false;
-    }
-
-    // Hiển thị danh sách thuốc
-    public void hienThiDanhSachThuoc() {
-        if (danhSachThuoc.isEmpty()) {
-            System.out.println("Danh sách thuốc trống.");
-        } else {
-            danhSachThuoc.forEach(thuoc -> {
-                System.out.println(thuoc);
-            });
-        }
-    }
-    private static final String FILE_NAME = "Thuoc.txt";
-
-    // Phương thức ghi thông tin thuốc vào file
-    public void ghiThuocVaoFile(Thuoc thuoc) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
-            writer.write(thuoc.toString());
-            writer.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+   
+ 
 }

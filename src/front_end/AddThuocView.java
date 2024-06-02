@@ -5,6 +5,12 @@
 package front_end;
 
 import entity.Thuoc;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -260,12 +266,29 @@ public class AddThuocView extends javax.swing.JDialog {
     private void jtfDangBaoCheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDangBaoCheActionPerformed
 
     }//GEN-LAST:event_jtfDangBaoCheActionPerformed
-    private int soThuTu = 1; // Bạn có thể khởi tạo lại giá trị này từ file nếu cần
-
-// Phương thức sinh mã tự động
+    private static int soThuTu;
+    private List<Thuoc> LayFile(String fileName) {
+        FileInputStream fi;
+        ObjectInputStream in;
+        List<Thuoc> list = new ArrayList<>();
+        try {
+            fi = new FileInputStream(fileName);
+            in = new ObjectInputStream(fi);
+            list = (ArrayList<Thuoc>) in.readObject();
+            fi.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+  
     private String sinhMaThuoc() {
-    return "MH" + String.format("%02d", soThuTu);
-}
+        List<Thuoc> list = new ArrayList<>();
+        list  = LayFile("Thuoc.txt");
+        soThuTu=list.size()+1;
+        return "MH" + String.format("%02d", soThuTu);
+    }
     private void jbtThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtThemActionPerformed
 
         String maThuoc = sinhMaThuoc();

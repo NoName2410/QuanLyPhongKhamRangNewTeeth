@@ -88,6 +88,7 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame implements View {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 153, 204));
 
         jtbThuoc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jtbThuoc.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -189,9 +190,8 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame implements View {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jbtRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbtTimKiem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))))))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,23 +239,23 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame implements View {
                         .addGap(350, 350, 350)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(677, 677, 677)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(118, 118, 118)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 1742, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(418, 418, 418)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1448, Short.MAX_VALUE))
+                .addGap(377, 377, 377)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(112, 112, 112)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 528, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9))
         );
@@ -272,12 +272,22 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame implements View {
             } else if (listThuoc.size() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Không có dữ liệu để xoá!");
             } else {
-                try {
-                    listThuoc.remove(removeThuoc);
-                    controller.writeToFile(listThuoc, "Thuoc.txt");
-                    showDataThuoc();
-                } catch (IndexOutOfBoundsException e) {
-                    JOptionPane.showMessageDialog(rootPane, "Lỗi khi xoá thuốc: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+                // Hiển thị hộp thoại xác nhận
+                int confirmed = JOptionPane.showConfirmDialog(
+                        rootPane,
+                        "Bạn có chắc chắn muốn xoá thuốc này không?",
+                        "Xác nhận xoá",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    try {
+                        listThuoc.remove(removeThuoc);
+                        controller.writeToFile(listThuoc, "Thuoc.txt");
+                        showDataThuoc();
+                    } catch (IndexOutOfBoundsException e) {
+                        JOptionPane.showMessageDialog(rootPane, "Lỗi khi xoá thuốc: " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         } catch (Exception e) {
@@ -315,9 +325,9 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame implements View {
             }
         }
         if (tim.trim().length() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Hãy nhập tên hoặc mã thành viên cần tìm!");
+            JOptionPane.showMessageDialog(rootPane, "Hãy nhập tên hoặc mã thuốc cần tìm!");
         } else if (ktra == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Không tồn tại tên hoặc mã thành viên này trong danh sách!");
+            JOptionPane.showMessageDialog(rootPane, "Không tồn tại tên hoặc mã thuốc này trong danh sách!");
         } else {
             SearchThuocView viewThuoc = new SearchThuocView(this, rootPaneCheckingEnabled);
             List<Thuoc> listThuocTimKiem = new ArrayList<>();
@@ -364,8 +374,7 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame implements View {
                 filteredList.add(x);
             } else if (jcbLoc.getSelectedItem().equals("Thuốc hạ sốt") && x.getNhomThuoc().equals("Thuốc hạ sốt")) {
                 filteredList.add(x);
-            }
-            else if (jcbLoc.getSelectedItem().equals("Thuốc tim mạch") && x.getNhomThuoc().equals("Thuốc tim mạch")) {
+            } else if (jcbLoc.getSelectedItem().equals("Thuốc tim mạch") && x.getNhomThuoc().equals("Thuốc tim mạch")) {
                 filteredList.add(x);
             }
             showData(filteredList, modelQLThuoc);
@@ -381,8 +390,8 @@ public class QuanLyKhoThuoc extends javax.swing.JFrame implements View {
     }//GEN-LAST:event_jbtThemActionPerformed
 
     private void jbtRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtRefreshActionPerformed
-         showData(listThuoc, modelQLThuoc);
-        
+        showData(listThuoc, modelQLThuoc);
+
     }//GEN-LAST:event_jbtRefreshActionPerformed
 
     /**

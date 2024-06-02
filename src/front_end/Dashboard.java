@@ -15,6 +15,8 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        
+        setLocationRelativeTo(null);
     }
 
     /**

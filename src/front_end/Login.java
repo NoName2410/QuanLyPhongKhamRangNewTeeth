@@ -24,6 +24,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -304,6 +306,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("jfLogin");
+        setName("jfLogin"); // NOI18N
 
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 0));
 
@@ -590,16 +593,21 @@ public class Login extends javax.swing.JFrame {
         try {
             String username = txtUser.getText();
             String pass = txtPass.getText();
+            //Kiểm tra xem 2 ô txtUser và txtPass có rỗng không, nếu rỗng thì ném thông báo ra
             if (username.isEmpty() || pass.isEmpty()) {
                 throw new Exception("Vui long dien du ten dang nhap va mat khau.");
             }
+            //Tạo biến reader kiểu BuferedReader nhằm đọc file userdata.txt
             BufferedReader reader = new BufferedReader(new FileReader("G:/My Drive/Term6/LapTrinhJava/Nhom3_LapTrinhJava/BaiTapLon/QuanLyPhongKhamRangNewTeeth/src/data/userdata.txt"));
-            String line;
+            String line; //Biến line có nhiệm vụ chứa nội dung đọc được của file
+            //Duyệt đến khi file rỗng
             while ((line = reader.readLine()) != null) {
+                //Tạo biến mảng data chứa dữ liệu được tách từ biến line cách nhau bởi dấu ","
                 String[] data = line.split(",");
                 if (data.length != 2) { // Kiểm tra dữ liệu có đúng định dạng (username,password)
                     continue; // Bỏ qua dòng không hợp lệ
                 }
+                //Kiểm tra nếu username và pass trùng với giá trị của mảng data ở trên không nếu có thì thông báo
                 if (username.equals(data[0]) && (pass.equals(data[1]))) {
                     JOptionPane.showMessageDialog(this, "Truy cập thành công!");
                     return;
@@ -607,6 +615,7 @@ public class Login extends javax.swing.JFrame {
             }
             throw new Exception("Tài khoản hoặc mật khẩu không đúng!");
         } catch (Exception e) {
+            //Bắt các Exception đã được ném và hiển thị hộp thoại và nội dung
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -653,9 +662,11 @@ public class Login extends javax.swing.JFrame {
             else if (!DataValidation.validatePass(pass)) {
                 throw new Exception("Mat khau qua yeu! (Yeu cau: 1 chu hoa, 1 chu thuong, 1 so, 1 ky tu dac biet, 6-12 ky tu).");
             } else {
+                //Tạo biến writter kiểu BuferedWritter để ghi dữ liệu vào file userdata.txt
                 BufferedWriter writer = new BufferedWriter(new FileWriter("G:/My Drive/Term6/LapTrinhJava/Nhom3_LapTrinhJava/BaiTapLon/QuanLyPhongKhamRangNewTeeth/src/data/userdata.txt", true));
-                writer.write(username + "," + pass + "\n");
+                writer.write(username + "," + pass + "\n");//Ghi username và pass vào file
                 writer.flush(); // Đảm bảo dữ liệu đã được ghi vào file
+                //Thông báo dăng ký thành công
                 JOptionPane.showMessageDialog(this, "Đăng ký thành công! Mời bạn đăng nhập!");
                 //Đóng cửa sổ Sign up và giải phóng tài nguyên
                 dgSignUp.dispose();
@@ -672,6 +683,7 @@ public class Login extends javax.swing.JFrame {
             // 2. Cast it to JDialog for method access
             JDialog signupDialog = (JDialog) dgSignUp;
             signupDialog.setSize(new Dimension(400, 500));
+            setLocationRelativeTo(null);
             // 3. (Optional) Set modality if you want to block the main window (setModal(true))
             signupDialog.setModal(true);
             // 4. Show the dialog
